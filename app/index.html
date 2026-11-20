@@ -1,23 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VICE FRAME — Leonida Cover Studio</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
-  </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
-</main>
-<script type="module" src="./src/main.js"></script>
+  <header>
+    <h1>Vice Frame</h1>
+    <span class="subtitle">Leonida Cover Studio</span>
+  </header>
+
+  <div class="app-container">
+    <div class="controls-column">
+      <div class="control-group">
+        <label>Photos (Upload or Drag & Drop)</label>
+        <input type="file" id="photo-input" multiple accept="image/*">
+        <div class="button-row" style="margin-top: 6px;">
+          <button id="btn-sample-pier">Sample: Pier</button>
+          <button id="btn-sample-boulevard">Sample: Blvd</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Available Photos (Click to Assign)</label>
+        <div id="photo-strip" class="photo-strip"></div>
+        <button id="btn-fill-all" style="margin-top: 4px;">One Photo Fills All Panels</button>
+      </div>
+
+      <div class="control-group">
+        <label>Panel Layout</label>
+        <select id="layout-select">
+          <option value="diagonal-six">Diagonal Six</option>
+          <option value="hero-boulevard">Hero Boulevard</option>
+          <option value="triple-strip">Triple Strip</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Grade Theme</label>
+        <select id="theme-select">
+          <option value="sunset-vice">Sunset Vice</option>
+          <option value="neon-noir">Neon Noir</option>
+          <option value="golden-leonida">Golden Leonida</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Caption Line 1</label>
+        <input type="text" id="title1-input" value="LEONIDA">
+      </div>
+
+      <div class="control-group">
+        <label>Caption Line 2</label>
+        <input type="text" id="title2-input" value="HEAT">
+      </div>
+
+      <div class="control-group">
+        <label>Tagline</label>
+        <input type="text" id="tagline-input" value="WELCOME BACK TO LEONIDA">
+      </div>
+
+      <div class="control-group">
+        <label>Selected Panel Zoom</label>
+        <input type="range" id="zoom-slider" min="0.5" max="3" step="0.05" value="1">
+      </div>
+
+      <div class="control-group">
+        <label>Export PNG</label>
+        <div class="button-row">
+          <button id="btn-export-1080" class="primary">1080x1080</button>
+          <button id="btn-export-1350">1080x1350</button>
+          <button id="btn-export-1920">1920x1080</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-column">
+      <div class="canvas-wrapper">
+        <canvas id="cover-canvas" width="1080" height="1080"></canvas>
+      </div>
+      <div id="status-line" class="status-bar">Ready. Click a panel on canvas to select and pan.</div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
